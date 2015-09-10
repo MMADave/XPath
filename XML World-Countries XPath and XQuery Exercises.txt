@@ -1,0 +1,25 @@
+Return the area of Mongolia.
+
+Note: Your solution will need to reference doc("countries.xml") to access the data.
+Reminder: To return the value of an attribute attr, you must use data(@attr), although just @attr may be used in comparisons. You will need to remember this for some later questions as well. 
+
+doc("countries.xml")/countries/country[data(@name)='Mongolia']/data(@area)
+
+-----------------------------------------------------------------------------
+
+Return the names of all cities that have the same name as the country in which they are located. 
+
+doc("countries.xml")/countries/country/city[name/text()=doc("countries.xml")/countries/country/data(@name)]/name
+
+-----------------------------------------------------------------------------
+
+Return the average population of Russian-speaking countries. 
+
+avg(doc("countries.xml")/countries/country[language/text()='Russian']/data(@population))
+
+-----------------------------------------------------------------------------
+
+Return the names of all countries that have at least three cities with population greater than 3 million. 
+
+doc("countries.xml")/countries/country[city 
+and count(child::city[population/text()>3000000])>2]/data(@name)
